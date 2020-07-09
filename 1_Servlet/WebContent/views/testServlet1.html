@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+        <title>개인정보 입력 - GET</title>
+        <style>
+            ul{ list-style-type: none; }
+
+            li{  padding-bottom: 20px; }
+        </style>
+    </head>
+    <body>
+        <h2>개인 정보 입력 - GET</h2>
+        당신의 개인 정보를 입력하겠습니다.<br>
+        데이터 입력 후 확인 버튼을 눌러주세요.<br>
+
+        <form action="/1_Servlet/testServlet1.do" method="get" name="testFrm">
+            <!-- /1_Servlet을 앞에 넣는 이유는 현재 Context root 값을 수정하지 않고
+                 프로젝트 이름으로 그대로 들어가있음 -->
+            <!-- 이렇게 해주면 뒤에 Servlet에서 매핑할 URL을 등록할 때 
+                /testServlet1.do 라고만 해도 앞에 Context root가 붙은 것으로 인식하여
+                 우리는 직접적으로 이렇게 붙여준다. -->
+                <ul>
+                    <li>이름 : <input type="text" name="name" size="10" /></li>
+                    <li>성별 : 
+                        남자<input type="radio" name="gender" value="남자" />
+                        여자<input type="radio" name="gender" value="여자" /> 
+                    </li>
+                    <li>나이 : 
+                        10대 미만<input type="radio" name="age" value="10대 미만" />
+                        10대<input type="radio" name="age" value="10대" />
+                        20대<input type="radio" name="age" value="20대" />
+                        30대<input type="radio" name="age" value="30대" />
+                        40대<input type="radio" name="age" value="40대" />
+                        50대<input type="radio" name="age" value="50대" />				 
+                    </li>
+                    <li>사는 도시 : 
+                        <select name="city">
+                            <option value="서울">서울</option>
+                            <option value="경기">경기</option>
+                            <option value="강원">강원</option>
+                            <option value="충북">충북</option>
+                            <option value="충남">충남</option>
+                            <option value="경북">경북</option>
+                            <option value="경남">경남</option>
+                            <option value="전북">전북</option>
+                            <option value="전남">전남</option>
+                            <option value="제주">제주</option>
+                        </select>
+                    </li>
+                    <li>키 :
+                        <input type="range" name="height" min="140" max="200" step="1">
+                        <input type="text" id="heightValue">
+                    </li>
+                    <li>좋아하는 음식 (모두 고르세요) : 
+                        <label for="food1">한식</label><input type="checkbox" name="food" id="korea" value="한식" />
+                        <label for="food2">중식</label><input type="checkbox" name="food" id="china" value="중식" />
+                        <label for="food3">일식</label><input type="checkbox" name="food" id="japan" value="일식" />
+                        <label for="food4">양식</label><input type="checkbox" name="food" id="western" value="양식" />
+                        <label for="food5">분식</label><input type="checkbox" name="food" id="dduk" value="분식" /> 
+                    </li>
+                    <li>
+                        <br/>
+                        <input type="submit" name="btnOK" id="btnOK" value="확인"  />&nbsp;&nbsp; 
+                        <input type="reset" value="취소" />
+                    </li>
+                 </ul>
+            </form>
+
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script>
+                $("input[type=range]").on("input",function(){
+                    $(this).next().val($(this).val());
+                });
+
+                $("#heightValue").on("input",function(){
+                    $(this).prev().val($(this).val());
+                });
+            </script>
+    </body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        
+        <title>2_JSP</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">Navbar</a>
+    
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search"
+                        aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+        
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="display-3">Hello, JSP!</h1>
+                <p>
+
+                    JSP (Java Server Page)란,
+                    Java 코드가 포함된 HTML 문서를 말하며 <br>
+                    Servlet에서 복잡하게 작성하였던 프레젠테이션 로직을 
+                    별도의 JSP로 분리해 작성할 수 있다. <br><br>
+
+                    JSP는 요청에 대한 응답 시 Servlet으로 변환되는데 <br>
+                    개발자가 직접 코딩한 Servlet 보다
+                    더욱 최적화된 형태의 Servlet 으로 변환을 시켜줌.
+
+
+                </p>
+                <p>
+                    <a class="btn btn-primary btn-lg" href="https://www.google.com/search?q=JSP&oq=JSP&aqs=chrome..69i57j35i39l2j0l3.1342j0j7&sourceid=chrome&ie=UTF-8" role="button">Learn
+                        more &raquo;</a>
+                </p>
+            </div>
+        </div>
+    
+        <div class="container">
+            <!-- Example row of columns -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>JSP - 1</h2>
+                    <p>
+                        스크립팅 원소(Scripting Element) <br>
+                        JSP 페이지에서 자바 코드를 직접 기술할 수 있게 해주는 기능이다 <br><br>
+
+                        1)  선언문  : &lt;%! 자바 코드 %&gt;  <br>
+                        멤버 변수, 멤버 메소드를 선언하기 위해 사용됨.<br>
+
+
+                        2)  스크립틀릿(scriptlet) : &lt;% 자바 코드 %&gt;
+                        JSP에서 자바 코드를 작성하기 위해 사용됨 (선언, 로직구현, 출력)<br>
+
+                        
+                        3) 출력식, 표현식(expression)  : &lt;%! 자바코드 %&gt; <br>
+                        자바 변수에 저장된 값 또는 메소드 반환 값 등을 화면에 출력할 때 사용됨.<br>
+
+
+                    </p>
+                    <p>
+                    	<!-- jsp¸¦ Á÷Á¢ ¿äÃ»ÇÒ ¼ö µµ ÀÖÀ½. -->
+                        <a class="btn btn-secondary" href="jsp/01_sum.jsp" role="button">View
+                            details &raquo;</a>
+                    </p>
+                </div>
+                <div class="col-md-12">
+                    <h2>jsp - 2</h2>
+                    <p>
+                       JSP의 맨 윗 부분에는 JSP 파일의 속성을 기술하는 page 지시어가 존재함. <br>
+                       
+                       language는 사용할 스크립트 언어 유형을 지정<br>
+                       contentType은 웹 브라우저가 받아 볼 페이지의 형식, 인코딩 방식 지정 <br>
+                       pageEncoding은 JSP 파일에 기록된 자바코드의 인코딩 방식을 지정 <br>
+                       import는 자바의 import와 같은 의미 <br>
+                       errorPage / isErrorPage 는 오류페이지 관리
+                    </p>
+                    <p>
+                        <a class="btn btn-secondary" href="jsp/02_directivePage.jsp" role="button">View
+                            details &raquo;</a>
+                        <a class="btn btn-secondary" href="jsp/02-1_inputTest.html" role="button">View
+                           Input Test &raquo;</a>
+                    </p>
+                </div>
+                <div class="col-md-12">
+                    <h2>JSP - 3</h2>
+                    <p>
+					정적 include로 페이지 안으로 include한 페이지의 소스가 
+					단순 텍스트로 그대로 복사되어 포함된다.<br> 
+					
+					include한 페이지 소스 내부에 변수가 선언되어 있으면 
+					베이스 페이지의 변수와 충돌이 날 수 있으므로 유의해야한다.<br> 
+					
+					include 페이지 안의 import는 같이 공유된다.<br> 
+					
+					주로 페이지를 조각내어 필요한 부분에 삽입할 때 사용한다.
+				</p>
+                    <p>
+                        <a class="btn btn-secondary" href="jsp/03_directiveInclude.jsp" role="button">View
+                            details &raquo;</a>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h2>Servlet / JSP</h2>
+                    <p>
+                    	Servlet + JSP
+                    </p>
+                    <p>
+                        <a class="btn btn-secondary" href="jsp/04_pizza.jsp" role="button">View
+                            details &raquo;</a>
+
+
+                    </p>
+                </div>
+                
+            </div>
+    
+            <hr>
+    
+        </div>
+    
+        <footer class="container">
+            <p>&copy; Company 2017-2018</p>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+     
+    </body>
+</html>
