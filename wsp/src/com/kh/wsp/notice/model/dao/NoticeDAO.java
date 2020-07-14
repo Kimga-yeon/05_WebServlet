@@ -70,6 +70,11 @@ public class NoticeDAO {
 
 
 
+	/** 글번호 조회
+	 * @param conn
+	 * @return
+	 * @throws Exception
+	 */
 	public int selectNextNo(Connection conn) throws Exception {
 
 		Statement stmt = null;
@@ -123,6 +128,12 @@ public class NoticeDAO {
 
 
 
+	/** 공지사항 상세 조회 DAO
+	 * @param conn
+	 * @param noticeNo
+	 * @return notice
+	 * @throws Exception
+	 */
 	public Notice selectNotice(Connection conn, int noticeNo) throws Exception {
 		
 		PreparedStatement pstmt = null;
@@ -179,6 +190,52 @@ public class NoticeDAO {
 		}finally {
 			pstmt.close();
 		}
+		
+		return result;
+	}
+
+
+
+	public int updateNotice(Connection conn, Notice notice) throws Exception{
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, notice.getNoticeTitle());
+			pstmt.setString(2, notice.getNoticeContent());
+			pstmt.setInt(3, notice.getNoticeNo());
+			
+			result = pstmt.executeUpdate();
+		}finally {
+			pstmt.close();
+		}
+		
+		
+		return result;
+	}
+
+
+
+	public int deleteNotice(Connection conn, int noticeNo) throws Exception {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, noticeNo);
+			
+			result = pstmt.executeUpdate();
+		}finally {
+			pstmt.close();
+			
+		}
+		
+		
 		
 		return result;
 	}

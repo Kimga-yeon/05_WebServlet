@@ -1,6 +1,7 @@
 package com.kh.wsp.notice.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.SendResult;
 
 import com.kh.wsp.member.model.vo.Member;
 import com.kh.wsp.notice.model.service.NoticeService;
@@ -124,9 +126,107 @@ public class NoticeController extends HttpServlet {
 					response.sendRedirect("list.do");
 				}
 				
-			
-			}
-			
+				}
+			// ===== 공지사항 수정 화면 Controller =====
+			else if(command.equals("/updateForm.do")) {
+				errorMsg = "공지사항 수정 화면으로 전환하는" + errorMsg;
+				
+				// 쿼리스트링으로 전달받은 글번호 저장
+				int noticeNo = Integer.parseInt(request.getParameter("no"));
+				
+				// DB에서 해당 글을 조회하여 얻어오기 
+				Notice notice = service.updateView(noticeNo);
+				
+				
+				
+				if(notice != null) {
+					path = "/WEB-INF/views/notice/noticeUpdate.jsp";
+					request.setAttribute("notice", notice);
+					view = request.getRequestDispatcher(path);
+					view.forward(request, response);
+				}else {
+					request.getSession().setAttribute("status", "error");
+					request.getSession().setAttribute("msg", "수정 전 내용이 정상 조회되지 않았습니다.");
+					
+					// 이전 요청 주소를 재요청
+					// response.sendRedirect(request.getHeader("referer"));
+					
+					response.sendRedirect("view.do?no="+noticeNo);
+					
+					
+					
+					
+				}
+				
+				
+				
+				// =====공지사항 수정 확인 ======
+				}else if(command.equals("/update.do")) {
+					errorMsg = "공지사항 수정"+errorMsg;
+					
+					HttpSession session = request.getSession();
+					
+					String noticeTitle = request.getParameter("title");
+					String noticeContent = request.getParameter("content");
+					// 쿼리스트링으로 전달받은 글번호 저장
+					int noticeNo = Integer.parseInt(request.getParameter("no"));
+					
+					Notice notice = new Notice(noticeNo, noticeTitle, noticeContent);
+					
+					int result = service.updateNotice(notice);
+					
+					
+					if(result > 0) {
+						status = "success";
+						msg = "공지사항 수정 성공";
+								
+						
+						response.sendRedirect("view.do?no="+noticeNo);
+					}else {
+						status = "error";
+						msg = "공지사항 수정 실패";
+								
+					}
+//					path = "view.do?no=\"+ noticeNo;
+						request.getSession().setAttribute("status", "error");
+						request.getSession().setAttribute("msg", "수정 전 내용이 정상 조회되지 않았습니다.");
+						
+						// 이전 요청 주소를 재요청
+						// response.sendRedirect(request.getHeader("referer"));
+						
+						response.sendRedirect("view.do?no="+noticeNo);
+						
+					
+					}
+					// ===== 공지사항 삭제 =====
+					else if(command.equals("/delete.do")) {
+						errorMsg = "공지사항 삭제"+errorMsg;
+							
+						HttpSession session = request.getSession();
+						int noticeNo = Integer.parseInt(request.getParameter("no"));
+						
+						int result = service.deleteNotice(noticeNo);
+						
+							
+						if(result>0) {
+							path="list.do"; 
+							status = "success";
+							msg = "공지사항 삭제 성공";
+							
+						}else {
+							path="view.do?no="+noticeNo;
+							status = "error";
+							msg = "공지사항 삭제 실패";
+							
+						}
+						
+						session.setAttribute("status", status);
+						session.setAttribute("msg", msg);
+						response.sendRedirect(path);
+							
+					}
+						
+				
 			
 			
 		}catch(Exception e) {
@@ -145,4 +245,5 @@ public class NoticeController extends HttpServlet {
 		doGet(request, response);
 	}
 
+	
 }

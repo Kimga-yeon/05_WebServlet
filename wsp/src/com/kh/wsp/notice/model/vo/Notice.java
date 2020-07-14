@@ -17,6 +17,18 @@ public class Notice {
 	}
 
 	
+	
+	
+	public Notice(int noticeNo, String noticeTitle, String noticeContent) {
+		super();
+		this.noticeNo = noticeNo;
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+	}
+
+
+
+
 	public Notice(String noticeTitle, String noticeContent, String memberId) {
 		super();
 		this.noticeTitle = noticeTitle;

@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
+
 import com.kh.wsp.notice.model.dao.NoticeDAO;
 import com.kh.wsp.notice.model.vo.Notice;
 	
@@ -118,6 +120,77 @@ public class NoticeService {
 		conn.close();
 		return notice;
 	}
+
+
+
+	/** 공지사항 수정 화면 Service
+	 * @param noticeNo
+	 * @return notice
+	 * @throws Exception
+	 */
+	public Notice updateView(int noticeNo) throws Exception {
+		   Connection conn = getConnection();
+		   
+		   Notice notice = dao.selectNotice(conn, noticeNo);
+		   
+		   // textarea에 개행문자를 정상 적용할 수 있도록
+		   // <br>태그를 \r\n으로 변환
+		   notice.setNoticeContent(notice.getNoticeContent().replaceAll("<br>","\r\n"));
+		   
+		   conn.close();
+		   
+		   return notice;
+		}
+
+
+
+	/** 공지사항 수정 등록 화면 Service
+	 * @param notice
+	 * @return notice
+	 */
+	public int updateNotice(Notice notice) throws Exception {
+		Connection conn = getConnection();
+		
+		
+		// 크로스 사이트 스크립팅 방지
+		notice.setNoticeContent(
+				replaceParameter(notice.getNoticeContent()));
+		
+		// 개행문자 처리
+		notice.setNoticeContent(
+				notice.getNoticeContent().replace("\r\n", "<br>"));
+		
+		int result = dao.updateNotice(conn,notice);
+		
+		if(result>0) {
+			conn.commit();
+		}else {
+			conn.rollback();
+		}
+		
+		conn.close();
+		
+		return result;
+	}
+
+
+
+	public int deleteNotice(int noticeNo) throws Exception {
+		Connection conn = getConnection();
+		int result = dao.deleteNotice(conn,noticeNo);
+		
+		if(result>0) {
+			conn.commit();
+		}else {
+			conn.rollback();
+		}
+		
+		conn.close();
+		
+		return result;
+	}
+	
+	
 	
 
 }
