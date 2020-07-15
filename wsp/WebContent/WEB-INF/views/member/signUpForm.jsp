@@ -39,16 +39,18 @@
                             <!-- autocomplete="off" : input 태그 자동완성 기능을 끔 -->
                             
                             <!-- 중복체크 여부 판단을 위한 hidden 타입 요소 -->
-                            <input type="hidden" name="idDup" id="idDup" value="false">
-                        </div>
+                           <!-- <input type="hidden" name="idDup" id="idDup" value="false">
+                        </div>-->
                         
                         <!-- ajax 중복검사 시 필요없음 -->
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-primary" id="idDupCheck">중복검사</button>
+                        <!-- <div class="col-md-3">
+                            <button type="button" class="btn btn-primary" id="idDupCheck">중복검사</button>-->
                            <!--  duplicate - 중복의 -->
                         </div>
-                    </div>
-
+						<div class="col-md-6 offset-md-3">
+                            <span id="checkId">&nbsp;</span>
+                    	</div>
+                       </div>
 
                     <!-- 비밀번호 -->
                     <div class="row mb-3 form-row">
@@ -246,6 +248,7 @@
 			// 정규표현식
 			
 			// jQuery 변수 : 변수에 직접적으로 jQuery메소드를 사용할 수 있음.
+			var $id = $("#id");
 			var $pwd1 = $("#pwd1");
 			var $pwd2 = $("#pwd2");
 			var $pwd = $("#pwd1, #pwd2");
@@ -265,14 +268,50 @@
 			
 			// 아이디를 입력하는 경우 발생하는 이벤트
 			$("#id").on("input",function(){
-				if($("#idDup").val()== "true"){
+				
+				// 아이디 유효성 검사
+				// 첫글자 영어 소문자, 그외 영어 대/소문자, 숫자, 총 길이 6~12 글자
+				var regExp = /^[a-z][a-zA-z\d]{5,11}$/;
+				if(!regExp.test($id.val())){ // 아이디에 입력된 값을 가지고와서 유효하지 않은지 확인
+					$("#checkId").text("유효하지 않은 아이디 형식입니다.").css("color","red");
+					signUpCheck.id = false;
+
+				}else{
+					$.ajax({
+		                  <%-- url : "<%request.getContextPath()%>/member/idDupCheck.do" --%>
+		                  url : "idDupCheck.do",
+		                  data : {"id" : $id.val()},
+		                  type : "get",
+		                  success : function(result){
+		                     if(result == 0){
+		                        $("#checkId").text("사용 가능한 아이디입니다.").css("color","green");
+		                        signUpCheck.id=true;
+		                     }else{
+		                        $("#checkId").text("이미 존재하는 아이디입니다.").css("color","red");
+		                        signUpCheck.id=false;
+		                     }
+							
+							
+						},error : function(){
+							console.log("ajax 통신 실패");
+						}
+					});
+				}
+				
+				
+				
+				
+				
+				
+				
+				/*if($("#idDup").val()== "true"){
 					// hidden 타입 태그 값이 true(중복검사가 성공한상태)일 때
 					// -> 검사 완료 된 값을 수정하려고 할 경우 
 					
 					$("#idDup").val("false");
 					signUpCheck.id = false;
 					// 다시 유효성을 false로 바꾸겠다.
-				}
+				}*/
 			});
 			
 			
@@ -366,9 +405,9 @@
 		// submit 동작
 		function validate(){ 
 			
-			// 아이디 중복 검사 결과 확인
-			if( $("#idDup").val() == "true")	signUpCheck.id = true;
-			else				  				signUpCheck.id = false;
+			// 아이디 중복 검사 결과 확인(팝업창)
+			//if( $("#idDup").val() == "true")	signUpCheck.id = true;
+			//else				  				signUpCheck.id = false;
 			// hidden 요소의 값이 true, false일 때 
 			
 			
@@ -396,7 +435,6 @@
 		
 		
     </script>
-		
 		<%@ include file="../common/footer.jsp"%>
 	</div>
 </body>

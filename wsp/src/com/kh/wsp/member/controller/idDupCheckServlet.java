@@ -22,12 +22,17 @@ public class idDupCheckServlet extends HttpServlet {
 		try {
 			int result = new MemberService().idDupCheck(id);
 			
+			response.getWriter().print(result);
+			
+			
+			
+			
+			// 팝업창으로 중복체크를 진행한 경우
 			// 중복 체크 결과 및 아이디를 다음 응답 화면으로 위임 
-			request.setAttribute("result", result);
-			
-			RequestDispatcher view = request.getRequestDispatcher("idDupForm.do");
-			view.forward(request, response);
-			
+//			request.setAttribute("result", result);
+//			RequestDispatcher view = request.getRequestDispatcher("idDupForm.do");
+//			view.forward(request, response);
+//			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

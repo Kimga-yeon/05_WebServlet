@@ -29,7 +29,7 @@
 		<input type="text" id="id" name="id">
 		<input type="submit" value="중복확인">
 	</form>
-	<br>
+	<br>i 
 	
 	<!-- 사용 가능 여부 메세지 출력 -->
 	<span>
