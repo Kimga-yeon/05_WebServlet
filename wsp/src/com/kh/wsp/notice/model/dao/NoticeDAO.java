@@ -49,13 +49,17 @@ public class NoticeDAO {
 			list = new ArrayList<Notice>();
 			
 			while(rset.next()) {
-				list.add(new Notice(rset.getInt("NOTICE_NO"),
-									rset.getString("NOTICE_TITLE"),
-									rset.getString("MEMBER_ID"),
-									rset.getInt("READ_COUNT"),
-									rset.getDate("NOTICE_MOD"
-											+ ""
-											+ "IFY_DT")));
+				
+				while(rset.next()) {
+					Notice notice = new Notice(rset.getInt("NOTICE_NO"),
+							rset.getString("NOTICE_TITLE"),
+							rset.getString("MEMBER_ID"),
+							rset.getInt("READ_COUNT"),
+							rset.getDate("NOTICE_MODIFY_DT"));
+					
+					notice.setReplyCount(rset.getInt("REPLY_COUNT"));
+					list.add(notice);
+				}
 			}
 			
 			

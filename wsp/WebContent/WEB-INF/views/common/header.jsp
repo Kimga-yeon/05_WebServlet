@@ -85,7 +85,7 @@
 				    <a class="nav-link" href="<%=request.getContextPath()%>/noticeEx/list.do">Notice(exercise)</a>
 				  </li>
 				  <li class="nav-item">
-				    <a class="nav-link" href="#">Board</a>
+				    <a class="nav-link" href="<%=request.getContextPath()%>/board/list.do?type=2">Board</a>
 				  </li>
 				  <li class="nav-item">
 				    <a class="nav-link" href="#">Board(exercise)</a>

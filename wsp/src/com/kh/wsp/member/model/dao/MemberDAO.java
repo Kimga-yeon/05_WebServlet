@@ -257,4 +257,43 @@ public class MemberDAO {
 		return result;
 	}
 
+
+	/** 회원 정보 조회 DAO
+	 * @param conn
+	 * @param memberId
+	 * @return selectMember
+	 * @throws Exception
+	 */
+	public Member selectMember(Connection conn, String memberId) throws Exception {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		Member selectMember = null;
+		
+		String query = prop.getProperty("selectMember");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				selectMember = new Member(rset.getString("MEMBER_ID"), 
+										rset.getString("MEMBER_NM"),
+										rset.getString("MEMBER_EMAIL"), 
+										rset.getString("MEMBER_INTEREST"), 
+										rset.getDate("MEMBER_ENROLL_DATE")
+						);
+												  
+			}
+		}finally {
+			rset.close();
+			pstmt.close();
+		}
+		
+		return selectMember;
+		
+	}
+
 }

@@ -44,8 +44,9 @@ public class EncodingFilter implements Filter {
 		// 1. 요청 데이터 문자 인코딩 변경
 		request.setCharacterEncoding("UTF-8");
 		
+
 		// 2. 응답 데이터 mine type, 문자 인코딩 지정
-		response.setContentType("text/html, charset=UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
 		// pass the request along the filter chain
 		chain.doFilter(request, response);

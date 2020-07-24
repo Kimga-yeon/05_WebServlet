@@ -11,6 +11,24 @@ public class Notice {
 	private Date noticeCreateDate;
 	private Date noticeModifyDate;
 	private String noticeStatus;	
+	// 게시글 댓글 개수를 저장할 멤버 변수 
+	private int replyCount;   // get.set까지만 추가
+	
+	
+
+
+	public int getReplyCount() {
+		return replyCount;
+	}
+
+
+
+
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
+
+
 
 
 	public Notice() {
