@@ -345,7 +345,6 @@
 						signUpCheck.pwd2 = true;
 					}
 				}
-				
 			});
 			
 			
@@ -354,10 +353,10 @@
 				var regExp =  /^[가-힣]{2,}$/; // 한글 두 글자 이상
 				
 				if(!regExp.test($(this).val())){ // 입력한 이름이 유효하지 않은 경우
-					$("#checkname").text("한글 두 글자 이상을 입력하세요.").css("color","red");
+					$("#checkName").text("한글 두 글자 이상을 입력하세요.").css("color","red");
 					signUpCheck.name = false;
 				}else{
-					$("#checkname").text("유효한 이름 형식입니다.").css("color","green");
+					$("#checkName").text("유효한 이름 형식입니다.").css("color","green");
 					signUpCheck.name = true;
 				}
 				

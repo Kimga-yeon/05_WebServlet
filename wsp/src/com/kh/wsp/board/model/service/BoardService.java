@@ -25,7 +25,7 @@ public class BoardService {
 	/** 페이징 처리 정보 생성 Service
 	 * @param currentPage
 	 * @param boardType
-	 * @return
+	 * @return 
 	 * @throws Exception
 	 */
 	public PageInfo getPageInfo(String currentPage, int boardType) throws Exception{

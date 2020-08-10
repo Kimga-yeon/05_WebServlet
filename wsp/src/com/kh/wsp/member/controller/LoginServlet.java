@@ -102,7 +102,7 @@ public class LoginServlet extends HttpServlet {
 			// 지정된 주소에 위치한 프레젠테이션 로직이 구현된 JSP로 
 			// 기존 요청 객체를 위임하는 방식.
 			// 서블릿 컨테이너의 입장에서는
-			// 요청이 Servlet -> JSP로 이동(위임)한 모습으로
+			// 요청이 Servlet -> JSP로 이동(위임)한 모습으로N  
 			// 페이지를 전환하는 것 처럼 보이지만
 			
 			// 클라이언트 입장에서는 하나의 요청이 처리되는 것일 뿐임.
@@ -150,3 +150,4 @@ public class LoginServlet extends HttpServlet {
 	}
 
 }
+ 

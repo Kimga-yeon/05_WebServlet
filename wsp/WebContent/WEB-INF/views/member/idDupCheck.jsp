@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,7 +25,7 @@
 <body onload="idValue();">
 	<h4 class="mt-3">아이디 중복 검사</h4>
 	<br>
-	<form action="<%= request.getContextPath() %>/member/idDupCheck.do" id="idChekcForm" method="post">
+	<form action="<%= request.getContextPath() %>/member/idDupCheck.do" id="idCheckForm" method="post">
 		<input type="text" id="id" name="id">
 		<input type="submit" value="중복확인">
 	</form>

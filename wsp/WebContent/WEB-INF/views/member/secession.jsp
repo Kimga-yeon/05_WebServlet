@@ -19,7 +19,7 @@
 			<%@ include file="sideMenu.jsp"%>
 
 			<div class="col-sm-offset-2 col-sm-8">
-				<h3>비밀번호 변경</h3>
+				<h3>회원 탈퇴</h3>
 				<div class="bg-white rounded shadow-sm container p-3">
 					<form method="POST" action="updateStatus.do" onsubmit="return validate();" 
 						class="form-horizontal" role="form">

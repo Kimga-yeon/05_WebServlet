@@ -24,7 +24,7 @@
 					<form method="POST" action="updatePwd.do" onsubmit="return validate();" class="form-horizontal" role="form">
 						<!-- 아이디 -->
 						<div class="row mb-3 form-row">
-							<div class="col-md-3">
+							<div class="col-md-3"> 
 								<h6>아이디</h6>
 							</div>
 							<div class="col-md-6">

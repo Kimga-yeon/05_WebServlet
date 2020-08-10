@@ -97,7 +97,7 @@
 				    <a class="nav-link" data-toggle="modal" href="#modal-container-1">Login</a>
 				  </li>
 				  <% }else{ %>
-				  <li class="nav-item active">
+				  <li class="nav-item active"> 
 				    <a class="nav-link"  href="<%=request.getContextPath()%>/member/myPage.do"><%= loginMember.getMemberName() %></a>
 				  </li>
 				  <li class="nav-item active">
@@ -170,8 +170,6 @@
 				return false; // 기본 이벤트를 제거
 			}
 			return true;
-			
-			
 		}
 	</script>
 

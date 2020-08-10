@@ -165,6 +165,7 @@ public class BoardController extends HttpServlet {
 					String name = files.nextElement();
 					// files.nextElement() : 다음 요소를 얻어옴.
 					
+					
 					// 요청 객체 중 전달받은 name 속성을 가진 요소 있을 경우 
 					// (파일이 지정된 name 속성을 가진 input태그에 잘 올려져 있는가?)
 					if(mRequest.getFilesystemName(name) != null) {

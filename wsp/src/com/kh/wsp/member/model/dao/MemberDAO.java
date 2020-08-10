@@ -99,10 +99,7 @@ public class MemberDAO {
 			pstmt.close();
 		}
 		
-		
-		
 		return result;
-		
 	}
 
 
